@@ -40,14 +40,16 @@ const Tarefa = ({
         {status}
       </S.Tag>
       <S.Descricao
-      disabled={!estaEditando}
-      value={descricao}
-      onChange={evento => setDescricao(evento.target.value) }/>
+        disabled={!estaEditando}
+        value={descricao}
+        onChange={(evento) => setDescricao(evento.target.value)}
+      />
       <S.BarrasAcoes>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar onClick={() => {
-              dispatch(
+            <S.BotaoSalvar
+              onClick={() => {
+                dispatch(
                   editar({
                     descricao,
                     titulo,
@@ -55,9 +57,12 @@ const Tarefa = ({
                     prioridade,
                     id
                   })
-              )
-              setEstaEditando(false)
-            }}>Salvar</S.BotaoSalvar>
+                )
+                setEstaEditando(false)
+              }}
+            >
+              Salvar
+            </S.BotaoSalvar>
             <S.BotaoCancelarRemover onClick={cancelarEdicao}>
               Cancelar
             </S.BotaoCancelarRemover>
