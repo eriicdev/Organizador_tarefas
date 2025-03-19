@@ -6,17 +6,25 @@ import { Container } from './styles'
 import { RootRecuder } from '../../store'
 
 const ListaDeTarefas = () => {
-  const {tarefas} = useSelector((state: RootRecuder) => state)
+  const { itens } = useSelector((state: RootRecuder) => state.tarefas)
+  const {termo} = useSelector((state: RootRecuder) => state.filtro)
+
+  const filtratarefas = () => {
+    return itens.filter(
+      (item) => item.titulo.toLowerCase().search(termo.toLowerCase()) >= 0
+    )
+  }
 
   return (
     <Container>
       <p>
-        2 tarefas marcadas como: &quot;categoria&ldquo; e &quot;termo&ldquo;
+        2 tarefas marcadas como: &quot;categoria&ldquo; e &quot;{termo}&ldquo;
       </p>
       <ul>
-        {tarefas.map((t) => (
+        {filtratarefas().map((t) => (
           <li key={t.titulo}>
             <Tarefa
+              id={t.id}
               descricao={t.descricao}
               titulo={t.titulo}
               status={t.status}
